@@ -17,7 +17,7 @@ def print_header(title):
 def test_imports():
     print_header("Test 1: Verification des imports")
     try:
-        from modules.generator import generate_selenium_script, generate_appium_script
+        from modules.generator import generate_selenium_test, generate_appium_test
         from modules.analyzer import parse_junit_xml, detect_anomalies
         from modules.reporter import generate_html_report, generate_text_report
         from modules.ci_cd_connector import JenkinsConnector, GitLabConnector
@@ -31,11 +31,11 @@ def test_imports():
 def test_generator():
     print_header("Test 2: Generation de scripts de test")
     try:
-        from modules.generator import generate_selenium_script
+        from modules.generator import generate_selenium_test
         
         print("\n📝 Generation d'un script Selenium...")
         description = "Script pour tester la connexion a LinkedIn"
-        script = generate_selenium_script(description)
+        script = generate_selenium_test(description)
         
         if script and len(script) > 50:
             print(f"✅ Script genere: {len(script)} caracteres")
