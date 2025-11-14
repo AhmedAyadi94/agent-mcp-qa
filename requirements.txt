@@ -1,0 +1,9 @@
+# Dépendances Python pour Agent MCP QA
+openai
+selenium
+requests
+pytest
+streamlit
+appium-python-client
+pandas
+xml.etree.ElementTree
