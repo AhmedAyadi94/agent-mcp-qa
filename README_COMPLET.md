@@ -37,39 +37,26 @@ Gestion de tickets Jira
 - Création automatique de bugs
 - Suivi des anomalies
 
----
 
-Structure du Projet
+Structure du Projet : 
 
-```
 agent-mcp-qa/
-├── main.py                    # Point d'entrée - Interface CLI
-├── requirements.txt           # Dépendances Python
+├── main.py                    
+├── requirements.txt           
 ├── modules/
-│   ├── generator.py          # Génération de scripts de test
-│   ├── analyzer.py           # Analyse de rapports de test
-│   ├── reporter.py           # Génération de rapports (WIP)
-│   ├── ci_cd_connector.py    # Connexion CI/CD (WIP)
-│   └── jira_connector.py     # Intégration Jira (WIP)
+│   ├── generator.py       
+│   ├── analyzer.py          
+│   ├── reporter.py          
+│   ├── ci_cd_connector.py    
+│   └── jira_connector.py     
 ├── data/
-│   ├── examples/             # Exemples de rapports
-│   └── results/              # Résultats générés
-└── generated_tests/          # Scripts de test générés
-```
+│   ├── examples/            
+│   └── results/             
+└── generated_tests/          
 
 
-============================================================
-    QAgent – Automatisation intelligente des tests
-============================================================
 
-Fonctionnalités disponibles:
-1. Générer un script de test (Selenium/Appium/Postman)
-2. Analyser un rapport de test
-3. Générer un rapport synthétique
-4. Intégration CI/CD (Jenkins/GitLab)
-5. Créer un ticket Jira
-6. Quitter
-============================================================
+
 
 
 Licence
