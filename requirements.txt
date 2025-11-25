@@ -1,4 +1,3 @@
-# Dépendances Python pour Agent MCP QA
 openai
 selenium
 requests
