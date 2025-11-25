@@ -1,5 +1,3 @@
-# Agent MCP QA - Modules Package
-
 from .generator import generate_selenium_script, generate_appium_script, generate_postman_collection
 from .analyzer import parse_junit_xml, parse_json_report, detect_anomalies
 from .reporter import generate_html_report, generate_text_report
