@@ -1,12 +1,3 @@
-"""
-Module Analyseur de Rapports de Test
-Ce module analyse les rapports de tests automatisés dans différents formats :
-- JUnit XML
-- JSON
-- Allure
-- TestNG
-"""
-
 import xml.etree.ElementTree as ET
 import json
 import os
@@ -35,7 +26,7 @@ def analyze_junit_xml(report_path: str) -> Dict:
             "test_cases": []
         }
         
-        # Analyser chaque test case
+     
         for testcase in root.findall('.//testcase'):
             case_info = {
                 "name": testcase.attrib.get('name', 'Unknown'),
@@ -44,26 +35,25 @@ def analyze_junit_xml(report_path: str) -> Dict:
                 "status": "passed"
             }
             
-            # Vérifier si le test a échoué
+            
             if testcase.find('failure') is not None:
                 case_info["status"] = "failed"
                 failure = testcase.find('failure')
                 case_info["failure_message"] = failure.attrib.get('message', '')
                 case_info["failure_type"] = failure.attrib.get('type', '')
             
-            # Vérifier si le test a des erreurs
+            
             if testcase.find('error') is not None:
                 case_info["status"] = "error"
                 error = testcase.find('error')
                 case_info["error_message"] = error.attrib.get('message', '')
             
-            # Vérifier si le test a été skip
+         
             if testcase.find('skipped') is not None:
                 case_info["status"] = "skipped"
             
             stats["test_cases"].append(case_info)
         
-        # Calculer le taux de réussite
         if stats["total_tests"] > 0:
             passed = stats["total_tests"] - stats["failures"] - stats["errors"] - stats["skipped"]
             stats["success_rate"] = (passed / stats["total_tests"]) * 100
@@ -89,7 +79,7 @@ def analyze_json_report(report_path: str) -> Dict:
         with open(report_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
-        # Support pour le format Newman/Postman
+        
         if 'run' in data:
             stats = data['run'].get('stats', {})
             return {
@@ -101,7 +91,7 @@ def analyze_json_report(report_path: str) -> Dict:
                 "requests": stats.get('requests', {})
             }
         
-        # Format JSON générique
+       
         return data
     
     except Exception as e:
@@ -119,24 +109,24 @@ def detect_anomalies(stats: Dict) -> List[str]:
     """
     anomalies = []
     
-    # Vérifier le taux de réussite
+    
     if stats.get("success_rate", 100) < 80:
         anomalies.append(f"⚠️ Taux de réussite faible: {stats.get('success_rate', 0):.1f}%")
     
-    # Vérifier les erreurs
+    
     if stats.get("errors", 0) > 0:
         anomalies.append(f"❌ {stats['errors']} erreur(s) détectée(s)")
     
-    # Vérifier les échecs
+    
     if stats.get("failures", 0) > 0:
         anomalies.append(f"❌ {stats['failures']} test(s) échoué(s)")
     
-    # Vérifier les tests ignorés
+    
     if stats.get("skipped", 0) > stats.get("total_tests", 0) * 0.2:
         anomalies.append(f"⚠️ Trop de tests ignorés: {stats.get('skipped', 0)}")
     
-    # Vérifier le temps d'exécution
-    if stats.get("time", 0) > 300:  # Plus de 5 minutes
+   
+    if stats.get("time", 0) > 300:  
         anomalies.append(f"⏱️ Temps d'exécution long: {stats['time']:.2f}s")
     
     return anomalies
@@ -168,7 +158,7 @@ def generate_summary(stats: Dict) -> str:
     summary.append(f"\nTaux de réussite : {stats.get('success_rate', 0):.1f}%")
     summary.append(f"Temps total      : {stats.get('time', 0):.2f}s")
     
-    # Ajouter les anomalies
+   
     anomalies = detect_anomalies(stats)
     if anomalies:
         summary.append("\n" + "="*60)
@@ -194,7 +184,7 @@ def analyze_report(report_path: str) -> Dict:
     if not os.path.exists(report_path):
         return {"error": f"Fichier introuvable: {report_path}"}
     
-    # Détecter le format
+  
     if report_path.endswith('.xml'):
         stats = analyze_junit_xml(report_path)
     elif report_path.endswith('.json'):
@@ -202,7 +192,7 @@ def analyze_report(report_path: str) -> Dict:
     else:
         return {"error": "Format de rapport non supporté. Utilisez .xml ou .json"}
     
-    # Générer le résumé
+    
     if "error" not in stats:
         stats["summary"] = generate_summary(stats)
         stats["anomalies"] = detect_anomalies(stats)
