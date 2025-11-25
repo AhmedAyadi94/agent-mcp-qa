@@ -1,6 +1,3 @@
-# Module de generation de rapports de test
-# Ce module genere des rapports HTML a partir des statistiques
-
 import os
 from datetime import datetime
 
