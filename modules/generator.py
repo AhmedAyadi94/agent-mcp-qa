@@ -1,13 +1,6 @@
-"""
-Module Générateur de Scripts de Test
-Ce module utilise l'IA (OpenAI) pour générer automatiquement des scripts de test
-pour différents frameworks : Selenium, Appium, Postman, JUnit, TestNG, etc.
-"""
-
 import openai
 import os
 
-# Configuration OpenAI (utilisez une variable d'environnement pour la clé API)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
 if OPENAI_API_KEY:
