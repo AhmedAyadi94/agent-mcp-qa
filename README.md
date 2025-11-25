@@ -29,15 +29,4 @@ Gestion de tickets Jira
 
 Création automatique de bugs
 Suivi des anomalies
-Structure du Projet :
 
-agent-mcp-qa/ ├── main.py
-├── requirements.txt
-├── modules/ │ ├── generator.py
-│ ├── analyzer.py
-│ ├── reporter.py
-│ ├── ci_cd_connector.py
-│ └── jira_connector.py
-├── data/ │ ├── examples/
-│ └── results/
-└── generated_tests/
