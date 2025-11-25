@@ -1,19 +1,7 @@
-#!/usr/bin/env python3
-"""
-Agent MCP QA - Point d'entrée principal
-Cet agent AI aide les ingénieurs QA dans leurs tâches quotidiennes :
-- Génération de scripts de test (Selenium, Appium, Postman)
-- Analyse de rapports de test
-- Reporting automatique
-- Intégration CI/CD (Jenkins, GitLab)
-- Gestion de tickets (Jira)
-"""
-
 import sys
 import os
 from pathlib import Path
 
-# Ajouter le dossier modules au PYTHONPATH
 sys.path.append(str(Path(__file__).parent / 'modules'))
 
 def main():
