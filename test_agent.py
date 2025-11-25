@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Script de test pour l'Agent MCP QA
-Ce fichier permet de tester toutes les fonctionnalites de l'agent
-"""
-
 import os
 import sys
 from datetime import datetime
@@ -113,7 +106,7 @@ def test_reporter():
             'time': 145.3
         }
         
-        # Generer rapport HTML
+     
         html_path = generate_html_report(stats, output_path="reports/test_report.html")
         if os.path.exists(html_path):
             print(f"✅ Rapport HTML genere: {html_path}")
@@ -122,7 +115,7 @@ def test_reporter():
             print(f"❌ Echec generation rapport HTML")
             html_success = False
         
-        # Generer rapport texte
+       
         text_path = generate_text_report(stats, output_path="reports/test_report.txt")
         if os.path.exists(text_path):
             print(f"✅ Rapport texte genere: {text_path}")
@@ -144,7 +137,7 @@ def test_connectors():
         
         print("\n🔌 Verification des classes de connecteurs...")
         
-        # Test Jenkins
+       
         jenkins = JenkinsConnector(
             base_url="http://localhost:8080",
             username="test",
@@ -152,14 +145,14 @@ def test_connectors():
         )
         print("   ✅ JenkinsConnector initialise")
         
-        # Test GitLab
+        
         gitlab = GitLabConnector(
             base_url="https://gitlab.com",
             private_token="token"
         )
         print("   ✅ GitLabConnector initialise")
         
-        # Test Jira
+       
         jira = JiraConnector(
             base_url="https://example.atlassian.net",
             email="test@example.com",
@@ -188,7 +181,7 @@ def run_all_tests():
     results['reporter'] = test_reporter()
     results['connectors'] = test_connectors()
     
-    # Resume
+  
     print_header("RESUME DES TESTS")
     total = len(results)
     passed = sum(results.values())
